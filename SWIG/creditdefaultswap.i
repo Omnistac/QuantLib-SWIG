@@ -164,6 +164,13 @@ class CreditDefaultSwapPtr : public boost::shared_ptr<Instrument> {
                 ->impliedHazardRate(targetNPV, discountCurve, dayCounter,
                                     recoveryRate, accuracy, model);
         }
+        Rate conventionalSpread(Real conventionalRecovery,
+                                const Handle<YieldTermStructure>& discountCurve,
+                                const DayCounter& dayCounter,
+                                CreditDefaultSwap::PricingModel model = CreditDefaultSwap::ISDA) const {
+            return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
+                ->conventionalSpread(conventionalRecovery, discountCurve, dayCounter, model);
+        }
         std::vector<boost::shared_ptr<CashFlow> > coupons() {
             return boost::dynamic_pointer_cast<CreditDefaultSwap>(*self)
                 ->coupons();
