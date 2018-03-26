@@ -314,13 +314,19 @@ class UpfrontCdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 const Handle<YieldTermStructure>& discountCurve,
                 Natural upfrontSettlementDays=0,
                 bool settlesAccrual = true,
-                bool paysAtDefaultTime = true) {
+                bool paysAtDefaultTime = true,
+                const Date& startDate = Date(),
+                const DayCounter& lastPeriodDayCounter = DayCounter(), // ISDA: Actual/360(inc)
+                const bool rebatesAccrual = true,
+                const CreditDefaultSwap::PricingModel model = CreditDefaultSwap::Midpoint) {
             return new UpfrontCdsHelperPtr(
                 new UpfrontCdsHelper(upfront,spread,tenor,
                                      settlementDays,calendar,
                                      frequency,convention,rule,dayCounter,
                                      recoveryRate,discountCurve,upfrontSettlementDays,
-                                     settlesAccrual,paysAtDefaultTime));
+                                     settlesAccrual,paysAtDefaultTime,
+                                     startDate,lastPeriodDayCounter,
+                                     rebatesAccrual, model));
         }
         UpfrontCdsHelperPtr(
                 Rate upfront,
@@ -336,13 +342,19 @@ class UpfrontCdsHelperPtr : public boost::shared_ptr<DefaultProbabilityHelper> {
                 const Handle<YieldTermStructure>& discountCurve,
                 Natural upfrontSettlementDays=0,
                 bool settlesAccrual = true,
-                bool paysAtDefaultTime = true) {
+                bool paysAtDefaultTime = true,
+                const Date& startDate = Date(),
+                const DayCounter& lastPeriodDayCounter = DayCounter(), // ISDA: Actual/360(inc)
+                const bool rebatesAccrual = true,
+                const CreditDefaultSwap::PricingModel model = CreditDefaultSwap::Midpoint) {
             return new UpfrontCdsHelperPtr(
                 new UpfrontCdsHelper(upfront,spread,tenor,
                                      settlementDays,calendar,
                                      frequency,convention,rule,dayCounter,
                                      recoveryRate,discountCurve,upfrontSettlementDays,
-                                     settlesAccrual,paysAtDefaultTime));
+                                     settlesAccrual,paysAtDefaultTime,
+                                     startDate,lastPeriodDayCounter,
+                                     rebatesAccrual, model));
         }
     }
 };
