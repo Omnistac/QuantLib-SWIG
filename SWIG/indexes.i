@@ -70,7 +70,9 @@ class Index {
     bool isValidFixingDate(const Date& fixingDate) const;
     Real fixing(const Date& fixingDate,
                 bool forecastTodaysFixing = false) const;
-    void addFixing(const Date& fixingDate, Rate fixing);
+    void addFixing(const Date& fixingDate, Rate fixing,
+                   bool forceOverwrite = false);
+    void clearFixings();
 };
 
 %template(Index) boost::shared_ptr<Index>;
