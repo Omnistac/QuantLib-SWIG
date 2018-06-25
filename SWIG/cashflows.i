@@ -153,6 +153,10 @@ class CouponPtr : public boost::shared_ptr<CashFlow> {
             return boost::dynamic_pointer_cast<Coupon>(*self)
                 ->accruedAmount(date);
         }
+        BigInteger accruedDays(const Date& date) {
+            return boost::dynamic_pointer_cast<Coupon>(*self)
+                ->accruedDays(date);
+        }
     }
 };
 
